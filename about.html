@@ -3,139 +3,268 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Mohak</title>
+  <title>Mohak GM</title>
   <style>
     body {
       margin: 0;
-      padding: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-      background-image: url('graffiti-texture.png');
-      background-size: cover;
-      color: #f0f0f0;
+      scroll-behavior: smooth;
+      color: #333;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    nav {
+      background: #6c5ce7;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+      color: #ffe066;
+    }
+
+    section {
+      padding: 80px 20px;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* === Home === */
+    #home {
+      background: linear-gradient(to right, #f0f4ff, #e0f7fa);
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      overflow: hidden;
-      animation: fadeInBody 1.5s ease-in-out;
-    }
-
-    /* Floating spray shapes */
-    .graffiti-shape {
-      position: absolute;
-      border-radius: 50%;
-      opacity: 0.15;
-      z-index: 0;
-      animation: float 8s ease-in-out infinite;
-    }
-
-    .graffiti-shape.one {
-      width: 300px;
-      height: 300px;
-      background: radial-gradient(circle, #ff4081, #ff1744);
-      top: -80px;
-      left: -60px;
-    }
-
-    .graffiti-shape.two {
-      width: 200px;
-      height: 200px;
-      background: radial-gradient(circle, #00e5ff, #00bcd4);
-      bottom: -60px;
-      right: -40px;
-      animation-delay: 3s;
-    }
-
-    .graffiti-shape.three {
-      width: 250px;
-      height: 250px;
-      background: radial-gradient(circle, #69f0ae, #00e676);
-      top: 50%;
-      left: 70%;
-      transform: translate(-50%, -50%);
-      animation-delay: 1.5s;
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.95);
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-      text-align: center;
-      max-width: 500px;
-      position: relative;
-      z-index: 1;
-      animation: slideUp 1.2s ease-out;
+      flex-direction: column;
     }
 
     .profile-pic img {
-      width: 120px;
-      height: 120px;
+      width: 130px;
+      height: 130px;
       border-radius: 50%;
       object-fit: cover;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
       margin-bottom: 20px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
       transition: transform 0.3s ease;
     }
 
     .profile-pic img:hover {
-      transform: scale(1.07);
+      transform: scale(1.1);
     }
 
     h1 {
       font-size: 2.5em;
-      color: #ff4081;
-      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+      color: #2e7d32;
+      margin: 10px 0;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
     }
 
     h2 {
       font-weight: 400;
       font-size: 1.2em;
       color: #555;
-      margin: 5px 0 20px;
+      margin-bottom: 0;
     }
 
-    p {
-      font-size: 1em;
+    /* === About Me === */
+    #about {
+      background: #ffffff;
+    }
+
+    #about p {
+      max-width: 600px;
+      margin: auto;
       line-height: 1.6;
-      color: #333;
+      font-size: 1.1em;
     }
 
-    @keyframes fadeInBody {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    /* === Hobbies === */
+    #hobbies {
+      background: #fce4ec;
     }
 
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
+    .hobby-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      max-width: 700px;
+      margin: auto;
     }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-25px); }
+    .hobby {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      width: 180px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      font-size: 1.1em;
+      cursor: default;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      user-select: none;
+    }
+
+    .hobby:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    /* === Contact === */
+    #contact {
+      background: #e3f2fd;
+    }
+
+    #contact p {
+      font-size: 1.1em;
+    }
+
+    .contact-links a {
+      display: inline-block;
+      margin: 10px;
+      color: #2e7d32;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    .contact-links a:hover {
+      text-decoration: underline;
+      color: #6c5ce7;
+    }
+
+    /* === Footer === */
+    footer {
+      background: #6c5ce7;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+      z-index: 10;
+      user-select: none;
+    }
+
+    /* Graffiti background shapes */
+    .graffiti-shape {
+      position: fixed;
+      border-radius: 50%;
+      opacity: 0.15;
+      filter: drop-shadow(0 0 4px #0004);
+      animation: floatGraffiti 8s ease-in-out infinite;
+      z-index: -1;
+      mix-blend-mode: screen;
+    }
+
+    .graffiti1 {
+      width: 180px;
+      height: 180px;
+      background: linear-gradient(45deg, #ff3c78, #ffea00);
+      top: 10%;
+      left: 5%;
+      animation-delay: 0s;
+      transform: rotate(-15deg);
+    }
+
+    .graffiti2 {
+      width: 250px;
+      height: 250px;
+      background: linear-gradient(135deg, #4cff8a, #14ffec);
+      bottom: 15%;
+      right: 10%;
+      animation-delay: 3s;
+      transform: rotate(25deg);
+    }
+
+    .graffiti3 {
+      width: 150px;
+      height: 150px;
+      background: linear-gradient(90deg, #ff5f6d, #ffc371);
+      top: 40%;
+      right: 30%;
+      animation-delay: 5s;
+      transform: rotate(-10deg);
+    }
+
+    @keyframes floatGraffiti {
+      0%, 100% { transform: translateY(0) rotate(var(--rotate)); }
+      50% { transform: translateY(-15px) rotate(calc(var(--rotate) + 10deg)); }
     }
   </style>
 </head>
 <body>
-  <!-- Graffiti floating background -->
-  <div class="graffiti-shape one"></div>
-  <div class="graffiti-shape two"></div>
-  <div class="graffiti-shape three"></div>
 
-  <!-- Content Card -->
-  <div class="card">
+  <!-- Graffiti Background Shapes -->
+  <div class="graffiti-shape graffiti1" style="--rotate:-15deg;"></div>
+  <div class="graffiti-shape graffiti2" style="--rotate:25deg;"></div>
+  <div class="graffiti-shape graffiti3" style="--rotate:-10deg;"></div>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About Me</a>
+    <a href="#hobbies">Hobbies</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- Home Section -->
+  <section id="home">
     <div class="profile-pic">
-      <img src="logo.png" alt="Mohak Logo">
+      <img src="logo.png" alt="Mohak Profile Picture" />
     </div>
     <h1>Mohak GM</h1>
     <h2>Aspiring Engineer • Dreamer • Doer</h2>
+  </section>
+
+  <!-- About Me Section -->
+  <section id="about">
+    <h2>About Me</h2>
     <p>
-      Hi! I’m Mohak — a passionate Information Science student on a journey to learn, create, and explore.
-      I love building cool things, playing with code, and constantly growing.
-      This blog is my little space on the web to share my thoughts, projects, and everything I’m curious about!
+      Hello! I'm Mohak, an enthusiastic student of Information Science who loves exploring technology, creating cool projects, and constantly learning. I believe in hard work, kindness, and living with purpose.
     </p>
-  </div>
+  </section>
+
+  <!-- Hobbies Section -->
+  <section id="hobbies">
+    <h2>My Hobbies</h2>
+    <div class="hobby-list">
+      <div class="hobby">🏀 Playing Basketball</div>
+      <div class="hobby">🎧 Listening to Music</div>
+      <div class="hobby">💻 Coding & Building Apps</div>
+      <div class="hobby">✈️ Traveling</div>
+      <div class="hobby">📸 Photography</div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <p>I'd love to hear from you! Feel free to reach out through:</p>
+    <div class="contact-links">
+      <a href="mailto:mohak@example.com">Email</a>
+      <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Mohak GM. All rights reserved.
+  </footer>
+
 </body>
 </html>
