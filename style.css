@@ -5,15 +5,32 @@ body {
   background: linear-gradient(135deg, #d0eaff, #f5d0ff);
   overflow-x: hidden;
   position: relative;
+  color: #333;
+  scroll-behavior: smooth;
 }
 
+/* Subtle textured grain overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background-image: url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Floating shapes base */
 .shape {
   position: absolute;
   z-index: 0;
   opacity: 0.3;
-  animation: float 10s ease-in-out infinite;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
 }
 
+/* Shapes with colors and irregular forms */
 .shape1 {
   top: 5%;
   left: 5%;
@@ -21,6 +38,8 @@ body {
   height: 120px;
   background: #ff99c8;
   border-radius: 50%;
+  animation-name: float;
+  animation-duration: 10s;
 }
 
 .shape2 {
@@ -30,11 +49,45 @@ body {
   height: 160px;
   background: #a0e7e5;
   border-radius: 20% 80% 30% 70%;
+  animation-name: float;
+  animation-duration: 10s;
+  animation-direction: reverse;
 }
 
+.shape3 {
+  top: 20%;
+  right: 15%;
+  width: 100px;
+  height: 140px;
+  background: linear-gradient(135deg, #ff4ec0, #f9d423);
+  border-radius: 70% 30% 80% 20% / 40% 60% 20% 80%;
+  animation-name: floatRotate;
+  animation-duration: 12s;
+  opacity: 0.25;
+}
+
+.shape4 {
+  bottom: 25%;
+  left: 15%;
+  width: 130px;
+  height: 90px;
+  background: linear-gradient(135deg, #45cafc, #303f9f);
+  border-radius: 50% 20% 30% 70% / 80% 50% 70% 30%;
+  animation-name: floatRotate;
+  animation-duration: 10s;
+  animation-direction: reverse;
+  opacity: 0.2;
+}
+
+/* Floating and rotating animations */
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
+  0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-20px); }
+}
+
+@keyframes floatRotate {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(10deg); }
 }
 
 /* Card Container */
@@ -43,11 +96,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1;
+  z-index: 10;
   position: relative;
   padding: 40px 20px;
 }
 
+/* Card */
 .card {
   background: #ffffff;
   border-radius: 20px;
@@ -56,6 +110,8 @@ body {
   text-align: center;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
+  position: relative;
+  z-index: 10;
 }
 
 .card:hover {
@@ -63,7 +119,7 @@ body {
 }
 
 /* Profile Image */
-.profile-pic {
+.profile-pic img {
   width: 120px;
   height: 120px;
   border-radius: 50%;
@@ -72,11 +128,16 @@ body {
   object-fit: cover;
 }
 
-/* Text */
+/* Text Styles */
 h1 {
   color: #2e7d32;
   margin-bottom: 10px;
   font-size: 2em;
+  text-shadow:
+    0 0 5px #6c5ce7,
+    0 0 10px #6c5ce7,
+    0 0 15px #6c5ce7,
+    0 0 20px #8e24aa;
 }
 
 .subtitle {
@@ -89,4 +150,51 @@ h1 {
   color: #333;
   font-size: 1em;
   line-height: 1.6;
+}
+
+/* Navigation styles */
+nav {
+  background: #6c5ce7;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+}
+
+nav a {
+  color: white;
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  text-decoration: underline;
+  color: #f9d423;
+}
+
+/* Section styles */
+section {
+  padding: 80px 20px;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+  background: rgba(255,255,255,0.9);
+  margin: 40px auto;
+  max-width: 800px;
+  border-radius: 15px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+}
+
+/* Footer */
+footer {
+  background: #6c5ce7;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  position: relative;
+  z-index: 10;
 }
